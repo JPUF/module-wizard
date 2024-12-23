@@ -59,8 +59,7 @@ subprojects {
         }
     }
 
-    val isForIntelliJPlugin =
-        project.hasProperty("INTELLIJ_PLUGIN") || project.path.startsWith(":intellij")
+    val isForIntelliJPlugin = project.hasProperty("INTELLIJ_PLUGIN")
     pluginManager.withPlugin("org.jetbrains.kotlin.jvm") {
         extensions.configure<KotlinJvmProjectExtension> {
             if (!isForIntelliJPlugin) {

@@ -9,11 +9,7 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/platforms" />
-            <option value="$PROJECT_DIR$/platforms/intellij" />
-            <option value="$PROJECT_DIR$/platforms/intellij/compose" />
-            <option value="$PROJECT_DIR$/platforms/intellij/compose/playground" />
-            <option value="$PROJECT_DIR$/platforms/intellij/skate" />
+            <option value="$PROJECT_DIR$/plugin" />
           </set>
         </option>
       </GradleProjectSettings>

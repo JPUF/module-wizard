@@ -1,7 +1,3 @@
-import com.jetbrains.plugin.structure.base.utils.exists
-import java.nio.file.Paths
-import java.util.Locale
-import kotlin.io.path.readText
 import org.jetbrains.intellij.platform.gradle.TestFrameworkType
 import org.jetbrains.kotlin.gradle.plugin.KotlinPlatformType
 
@@ -12,60 +8,21 @@ plugins {
   alias(libs.plugins.buildConfig)
 }
 
-group = "com.slack.intellij"
+group = "com.github.jpuf.plugin"
 
 intellijPlatform {
   pluginConfiguration {
     vendor {
-      name = "Slack"
-      url = "https://github.com/slackhq/foundry/tree/main/platforms/intellij/skate"
-      email = "oss@slack-corp.com"
+      name = "JPUF"
+      url = "https://github.com/jpuf/"
+      email = "email@me.com"
     }
-  }
-}
-
-fun isGitHash(hash: String): Boolean {
-  if (hash.length != 40) {
-    return false
-  }
-
-  return hash.all { it in '0'..'9' || it in 'a'..'f' }
-}
-
-// Impl from https://gist.github.com/madisp/6d753bde19e278755ec2b69ccfc17114
-fun readGitRepoCommit(): String? {
-  try {
-    val head = Paths.get("${rootProject.projectDir}/.git").resolve("HEAD")
-    if (!head.exists()) {
-      return null
-    }
-
-    val headContents = head.readText(Charsets.UTF_8).lowercase(Locale.US).trim()
-
-    if (isGitHash(headContents)) {
-      return headContents
-    }
-
-    if (!headContents.startsWith("ref:")) {
-      return null
-    }
-
-    val headRef = headContents.removePrefix("ref:").trim()
-    val headFile = Paths.get(".git").resolve(headRef)
-    if (!headFile.exists()) {
-      return null
-    }
-
-    return headFile.readText(Charsets.UTF_8).trim().takeIf { isGitHash(it) }
-  } catch (_: Exception) {
-    return null
   }
 }
 
 buildConfig {
   packageName("foundry.intellij.skate")
   buildConfigField("String", "VERSION", "\"${project.property("VERSION_NAME")}\"")
-  buildConfigField("String", "GIT_SHA", provider { "\"${readGitRepoCommit().orEmpty()}\"" })
   useKotlinOutput {
     topLevelConstants = true
     internalVisibility = true

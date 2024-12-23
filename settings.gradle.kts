@@ -47,7 +47,8 @@ dependencyResolutionManagement {
 rootProject.name = "module-wizard"
 
 include(
-    ":plugin"
+    ":plugin",
+    ":compose"
 )
 
 // https://docs.gradle.org/5.6/userguide/groovy_plugin.html#sec:groovy_compilation_avoidance

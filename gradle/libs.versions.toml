@@ -35,7 +35,6 @@ versionsPlugin = { id = "com.github.ben-manes.versions", version.ref = "versions
 
 [libraries]
 asm-bom = { module = "org.ow2.asm:asm-bom", version.ref = "asm" }
-circuit-foundation = { module = "com.slack.circuit:circuit-foundation", version.ref = "circuit" }
 compose-markdown = { module = "com.mikepenz:multiplatform-markdown-renderer", version.ref = "markdown" }
 coroutines-bom = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-bom", version.ref = "coroutines" }
 coroutines-core-ij = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines-ij" }
