@@ -1,0 +1,28 @@
+<idea-plugin>
+    <!-- Product and plugin compatibility requirements.
+         Read more: https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
+    <depends>com.intellij.modules.platform</depends>
+    <depends>org.intellij.plugins.markdown</depends>
+    <depends>org.jetbrains.plugins.terminal</depends>
+    <depends>org.jetbrains.kotlin</depends>
+    <depends>org.jetbrains.android</depends>
+    <depends>com.intellij.modules.java</depends>
+
+    <!-- Extension points defined by the plugin.
+         Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
+
+    <extensions defaultExtensionNs="org.jetbrains.kotlin">
+        <supportsKotlinPluginMode supportsK2="true" />
+    </extensions>
+
+    <actions>
+        <action id="com.github.jpuf.module_wizard.plugin.ModuleWizardMenuAction"
+                class="com.github.jpuf.module_wizard.plugin.ModuleWizardMenuAction"
+                text="Custom Module"
+                description="Create a custom module">
+            <add-to-group group-id="NewGroup" anchor="last"/>
+            <keyboard-shortcut first-keystroke="control shift P" keymap="$default"/>
+        </action>
+    </actions>
+
+</idea-plugin>
