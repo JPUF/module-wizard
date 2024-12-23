@@ -4,7 +4,6 @@ import androidx.compose.ui.awt.ComposePanel
 import org.jetbrains.jewel.bridge.theme.SwingBridgeTheme
 import org.jetbrains.jewel.foundation.ExperimentalJewelApi
 import org.jetbrains.jewel.ui.component.Text
-import java.nio.file.Path
 import javax.swing.JComponent
 
 object ModuleWizardUi {
