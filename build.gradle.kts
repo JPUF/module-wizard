@@ -129,8 +129,7 @@ subprojects {
                 val name: String,
                 val description: String,
                 val version: String,
-                val sinceBuild: String,
-                val urlSuffix: String,
+                val sinceBuild: String
             )
 
             val pluginDetails =
@@ -139,8 +138,7 @@ subprojects {
                     name = property("PLUGIN_NAME").toString(),
                     description = property("PLUGIN_DESCRIPTION").toString(),
                     version = property("VERSION_NAME").toString(),
-                    sinceBuild = property("PLUGIN_SINCE_BUILD").toString(),
-                    urlSuffix = property("ARTIFACTORY_URL_SUFFIX").toString(),
+                    sinceBuild = property("PLUGIN_SINCE_BUILD").toString()
                 )
 
             configure<IntelliJPlatformExtension> {

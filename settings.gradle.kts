@@ -47,9 +47,7 @@ dependencyResolutionManagement {
 rootProject.name = "module-wizard"
 
 include(
-    ":platforms:intellij:compose",
-    ":platforms:intellij:compose:playground",
-    ":platforms:intellij:skate"
+    ":plugin"
 )
 
 // https://docs.gradle.org/5.6/userguide/groovy_plugin.html#sec:groovy_compilation_avoidance
