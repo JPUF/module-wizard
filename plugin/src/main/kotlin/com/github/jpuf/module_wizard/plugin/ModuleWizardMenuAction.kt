@@ -6,6 +6,6 @@ import com.intellij.openapi.actionSystem.AnActionEvent
 class ModuleWizardMenuAction : AnAction() {
     override fun actionPerformed(e: AnActionEvent) {
         val currentProject = e.project ?: return
-        ModuleWizardWindow(currentProject, e).show()
+        ModuleWizardWindow(currentProject).show()
     }
 }

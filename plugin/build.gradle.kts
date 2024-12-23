@@ -73,7 +73,7 @@ dependencies {
     testFramework(TestFrameworkType.Bundled)
   }
 
-//  implementation(projects.platforms.intellij.compose, exclusions)
+  implementation(projects.compose, exclusions)
 
   implementation(libs.kaml)
   implementation(libs.kotlinx.serialization.core)
