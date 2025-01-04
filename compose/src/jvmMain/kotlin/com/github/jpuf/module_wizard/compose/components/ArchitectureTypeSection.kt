@@ -22,17 +22,13 @@ fun ArchitectureTypeSection(
     modifier: Modifier = Modifier,
     architecture: ModuleArchitecture,
     includeSemantics: Boolean,
-    onIncludeSemanticsChanged: (checked: Boolean) -> Unit
+    onIncludeSemanticsChanged: (checked: Boolean) -> Unit,
+    onArchitectureChanged: (architecture: ModuleArchitecture) -> Unit,
 ) {
     Column(modifier = modifier, verticalArrangement = Arrangement.spacedBy(8.dp)) {
         Text(text = "Architecture type", style = Typography.h4TextStyle())
         Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
-            RadioButtonChip(selected = architecture == ModuleArchitecture.Clean, onClick = {}) {
-                Text("Clean")
-            }
-            RadioButtonChip(selected = architecture == ModuleArchitecture.BFF, onClick = {}) {
-                Text("BFF UI")
-            }
+            ModuleArchitecture.entries.map { ArchitectureRadioChip(it, architecture, onArchitectureChanged) }
         }
         Text(
             "This choice is explained in the docs. It depends if you need to process BFF API responses.",
@@ -57,5 +53,24 @@ fun ArchitectureTypeSection(
             )
         }
 
+    }
+}
+
+@Composable
+private fun ArchitectureRadioChip(
+    chipArchitecture: ModuleArchitecture,
+    currentArchitecture: ModuleArchitecture,
+    onArchitectureChanged: (architecture: ModuleArchitecture) -> Unit
+) {
+    RadioButtonChip(
+        selected = currentArchitecture == chipArchitecture,
+        onClick = { onArchitectureChanged(chipArchitecture) }
+    ) {
+        Text(
+            text = when (chipArchitecture) {
+                ModuleArchitecture.Clean -> "Clean"
+                ModuleArchitecture.BFF -> "BFF"
+            }
+        )
     }
 }

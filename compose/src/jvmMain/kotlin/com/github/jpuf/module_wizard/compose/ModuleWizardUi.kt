@@ -13,6 +13,7 @@ import androidx.compose.ui.awt.ComposePanel
 import androidx.compose.ui.unit.dp
 import com.github.jpuf.module_wizard.compose.components.ModuleWizardContent
 import com.github.jpuf.module_wizard.compose.components.PanelGradient
+import com.github.jpuf.module_wizard.model.ModuleArchitecture
 import com.github.jpuf.module_wizard.model.ModuleWizardState
 import kotlinx.coroutines.flow.StateFlow
 import org.jetbrains.jewel.bridge.theme.SwingBridgeTheme
@@ -29,14 +30,16 @@ object ModuleWizardUi {
         width: Int,
         height: Int,
         state: StateFlow<ModuleWizardState>,
-        onIncludeSemanticsChanged: (checked: Boolean) -> Unit
+        onIncludeSemanticsChanged: (checked: Boolean) -> Unit,
+        onArchitectureChanged: (architecture: ModuleArchitecture) -> Unit,
     ): JComponent = ComposePanel().apply {
         setBounds(0, 0, width, height)
         setContent {
             SwingBridgeTheme {
                 ModuleWizardPanel(
                     state = state.collectAsState().value,
-                    onIncludeSemanticsChanged = onIncludeSemanticsChanged
+                    onIncludeSemanticsChanged = onIncludeSemanticsChanged,
+                    onArchitectureChanged = onArchitectureChanged
                 )
             }
         }
@@ -46,7 +49,8 @@ object ModuleWizardUi {
     fun ModuleWizardPanel(
         modifier: Modifier = Modifier,
         state: ModuleWizardState,
-        onIncludeSemanticsChanged: (checked: Boolean) -> Unit
+        onIncludeSemanticsChanged: (checked: Boolean) -> Unit,
+        onArchitectureChanged: (architecture: ModuleArchitecture) -> Unit
     ) {
         Box(modifier.fillMaxSize().background(JewelTheme.globalColors.panelBackground)) {
             val listState = rememberLazyListState()
@@ -55,7 +59,8 @@ object ModuleWizardUi {
                     ModuleWizardContent(
                         listState = listState,
                         contentState = state,
-                        onIncludeSemanticsChanged = onIncludeSemanticsChanged
+                        onIncludeSemanticsChanged = onIncludeSemanticsChanged,
+                        onArchitectureChanged = onArchitectureChanged
                     )
                     PanelGradient()
                 }

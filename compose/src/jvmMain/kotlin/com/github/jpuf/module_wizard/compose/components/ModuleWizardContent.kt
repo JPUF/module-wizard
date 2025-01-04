@@ -9,6 +9,7 @@ import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.github.jpuf.module_wizard.model.ModuleArchitecture
 import com.github.jpuf.module_wizard.model.ModuleWizardState
 import org.jetbrains.jewel.ui.component.InformationBanner
 import org.jetbrains.jewel.ui.component.Text
@@ -24,7 +25,8 @@ fun ModuleWizardContent(
     modifier: Modifier = Modifier,
     listState: LazyListState,
     contentState: ModuleWizardState,
-    onIncludeSemanticsChanged: (checked: Boolean) -> Unit
+    onIncludeSemanticsChanged: (checked: Boolean) -> Unit,
+    onArchitectureChanged: (architecture: ModuleArchitecture) -> Unit
 ) {
     LazyColumn(
         modifier = modifier,
@@ -43,9 +45,10 @@ fun ModuleWizardContent(
         }
         item {
             ArchitectureTypeSection(
-                architecture = contentState.moduleArchitecture,
+                architecture = contentState.architecture,
                 includeSemantics = contentState.includeSemantics,
-                onIncludeSemanticsChanged = onIncludeSemanticsChanged
+                onIncludeSemanticsChanged = onIncludeSemanticsChanged,
+                onArchitectureChanged = onArchitectureChanged
             )
         }
         item {

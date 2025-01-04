@@ -22,7 +22,8 @@ class ModuleWizardWindow(private val currentProject: Project) :
             width = 600,
             height = 800,
             state = service.state,
-            onIncludeSemanticsChanged = service::onIncludeSemanticsChanged
+            onIncludeSemanticsChanged = service::onIncludeSemanticsChanged,
+            onArchitectureChanged = service::onArchitectureChanged
         )
     }
 

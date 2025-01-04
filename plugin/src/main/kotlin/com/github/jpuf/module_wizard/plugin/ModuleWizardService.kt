@@ -25,6 +25,12 @@ internal class ModuleWizardService : CoroutineScope, Disposable {
         }
     }
 
+    fun onArchitectureChanged(architecture: ModuleArchitecture) {
+        _state.update { s ->
+            s.copy(architecture = architecture)
+        }
+    }
+
     override fun dispose() {
         cancel("Disposing ${this::class.simpleName}...")
         coroutineContext.cancel(CancellationException("Shutting down project..."))
@@ -33,7 +39,7 @@ internal class ModuleWizardService : CoroutineScope, Disposable {
     private companion object {
         val initialState = ModuleWizardState(
             name = "",
-            moduleArchitecture = ModuleArchitecture.Clean,
+            architecture = ModuleArchitecture.Clean,
             includeSemantics = true
         )
     }
