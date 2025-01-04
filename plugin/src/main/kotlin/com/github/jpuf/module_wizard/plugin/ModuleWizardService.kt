@@ -31,6 +31,12 @@ internal class ModuleWizardService : CoroutineScope, Disposable {
         }
     }
 
+    fun onNameChanged(name: String) {
+        _state.update { s ->
+            s.copy(name = name)
+        }
+    }
+
     override fun dispose() {
         cancel("Disposing ${this::class.simpleName}...")
         coroutineContext.cancel(CancellationException("Shutting down project..."))

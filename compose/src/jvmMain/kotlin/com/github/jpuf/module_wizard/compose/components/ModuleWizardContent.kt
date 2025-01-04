@@ -26,7 +26,8 @@ fun ModuleWizardContent(
     listState: LazyListState,
     contentState: ModuleWizardState,
     onIncludeSemanticsChanged: (checked: Boolean) -> Unit,
-    onArchitectureChanged: (architecture: ModuleArchitecture) -> Unit
+    onArchitectureChanged: (architecture: ModuleArchitecture) -> Unit,
+    onNameChanged: (name: String) -> Unit
 ) {
     LazyColumn(
         modifier = modifier,
@@ -41,7 +42,7 @@ fun ModuleWizardContent(
             }
         }
         item {
-            ModuleNameSection()
+            ModuleNameSection(name = contentState.name, onNameChanged = onNameChanged)
         }
         item {
             ArchitectureTypeSection(

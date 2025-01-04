@@ -32,6 +32,7 @@ object ModuleWizardUi {
         state: StateFlow<ModuleWizardState>,
         onIncludeSemanticsChanged: (checked: Boolean) -> Unit,
         onArchitectureChanged: (architecture: ModuleArchitecture) -> Unit,
+        onNameChanged: (name: String) -> Unit
     ): JComponent = ComposePanel().apply {
         setBounds(0, 0, width, height)
         setContent {
@@ -39,7 +40,8 @@ object ModuleWizardUi {
                 ModuleWizardPanel(
                     state = state.collectAsState().value,
                     onIncludeSemanticsChanged = onIncludeSemanticsChanged,
-                    onArchitectureChanged = onArchitectureChanged
+                    onArchitectureChanged = onArchitectureChanged,
+                    onNameChanged = onNameChanged
                 )
             }
         }
@@ -50,7 +52,8 @@ object ModuleWizardUi {
         modifier: Modifier = Modifier,
         state: ModuleWizardState,
         onIncludeSemanticsChanged: (checked: Boolean) -> Unit,
-        onArchitectureChanged: (architecture: ModuleArchitecture) -> Unit
+        onArchitectureChanged: (architecture: ModuleArchitecture) -> Unit,
+        onNameChanged: (name: String) -> Unit
     ) {
         Box(modifier.fillMaxSize().background(JewelTheme.globalColors.panelBackground)) {
             val listState = rememberLazyListState()
@@ -60,7 +63,8 @@ object ModuleWizardUi {
                         listState = listState,
                         contentState = state,
                         onIncludeSemanticsChanged = onIncludeSemanticsChanged,
-                        onArchitectureChanged = onArchitectureChanged
+                        onArchitectureChanged = onArchitectureChanged,
+                        onNameChanged = onNameChanged
                     )
                     PanelGradient()
                 }
