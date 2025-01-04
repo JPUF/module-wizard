@@ -11,6 +11,7 @@ kotlin {
   sourceSets {
     jvmMain {
       dependencies {
+        implementation(projects.model)
         implementation(compose.animation)
         implementation(compose.components.resources)
         implementation(compose.desktop.common)

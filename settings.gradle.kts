@@ -48,7 +48,8 @@ rootProject.name = "module-wizard"
 
 include(
     ":plugin",
-    ":compose"
+    ":compose",
+    ":model"
 )
 
 // https://docs.gradle.org/5.6/userguide/groovy_plugin.html#sec:groovy_compilation_avoidance

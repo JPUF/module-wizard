@@ -9,6 +9,7 @@ import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.github.jpuf.module_wizard.model.ModuleWizardState
 import org.jetbrains.jewel.ui.component.InformationBanner
 import org.jetbrains.jewel.ui.component.Text
 import org.jetbrains.jewel.ui.component.Typography
@@ -19,7 +20,7 @@ private const val SUBTITLE_2 =
     "A detailed explanation of the architectural decisions is provided in our dev documentation."
 
 @Composable
-fun ModuleWizardContent(modifier: Modifier = Modifier, listState: LazyListState) {
+fun ModuleWizardContent(modifier: Modifier = Modifier, listState: LazyListState, contentState: ModuleWizardState) {
     LazyColumn(
         modifier = modifier,
         state = listState,
@@ -36,7 +37,7 @@ fun ModuleWizardContent(modifier: Modifier = Modifier, listState: LazyListState)
             ModuleNameSection()
         }
         item {
-            ArchitectureTypeSection()
+            ArchitectureTypeSection(architecture = contentState.moduleArchitecture)
         }
         item {
             ArchitecturePreviewSection()

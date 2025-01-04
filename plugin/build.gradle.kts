@@ -20,15 +20,6 @@ intellijPlatform {
   }
 }
 
-buildConfig {
-  packageName("foundry.intellij.skate")
-  buildConfigField("String", "VERSION", "\"${project.property("VERSION_NAME")}\"")
-  useKotlinOutput {
-    topLevelConstants = true
-    internalVisibility = true
-  }
-}
-
 // TODO reconcile exclusions and this by figuring out which configurations need to exclude
 //  coroutines. https://youtrack.jetbrains.com/issue/IJPL-163489
 configurations.configureEach {
@@ -73,6 +64,7 @@ dependencies {
     testFramework(TestFrameworkType.Bundled)
   }
 
+  implementation(projects.model)
   implementation(projects.compose, exclusions)
 
   implementation(libs.kaml)
