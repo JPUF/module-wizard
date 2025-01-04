@@ -25,24 +25,38 @@ import javax.swing.JComponent
 object ModuleWizardUi {
 
     @OptIn(ExperimentalJewelApi::class)
-    fun createPanel(width: Int, height: Int, state: StateFlow<ModuleWizardState>): JComponent {
-        return ComposePanel().apply {
-            setBounds(0, 0, width, height)
-            setContent {
-                SwingBridgeTheme {
-                    ModuleWizardPanel(state = state.collectAsState().value)
-                }
+    fun createPanel(
+        width: Int,
+        height: Int,
+        state: StateFlow<ModuleWizardState>,
+        onIncludeSemanticsChanged: (checked: Boolean) -> Unit
+    ): JComponent = ComposePanel().apply {
+        setBounds(0, 0, width, height)
+        setContent {
+            SwingBridgeTheme {
+                ModuleWizardPanel(
+                    state = state.collectAsState().value,
+                    onIncludeSemanticsChanged = onIncludeSemanticsChanged
+                )
             }
         }
     }
 
     @Composable
-    fun ModuleWizardPanel(modifier: Modifier = Modifier, state: ModuleWizardState) {
+    fun ModuleWizardPanel(
+        modifier: Modifier = Modifier,
+        state: ModuleWizardState,
+        onIncludeSemanticsChanged: (checked: Boolean) -> Unit
+    ) {
         Box(modifier.fillMaxSize().background(JewelTheme.globalColors.panelBackground)) {
             val listState = rememberLazyListState()
             Column(Modifier.padding(horizontal = 16.dp)) {
                 Box(modifier = Modifier.weight(1f), contentAlignment = Alignment.BottomCenter) {
-                    ModuleWizardContent(listState = listState, contentState = state)
+                    ModuleWizardContent(
+                        listState = listState,
+                        contentState = state,
+                        onIncludeSemanticsChanged = onIncludeSemanticsChanged
+                    )
                     PanelGradient()
                 }
                 Box(

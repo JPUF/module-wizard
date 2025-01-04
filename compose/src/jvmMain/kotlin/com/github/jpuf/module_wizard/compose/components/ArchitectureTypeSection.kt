@@ -18,14 +18,19 @@ import org.jetbrains.jewel.ui.component.Text
 import org.jetbrains.jewel.ui.component.Typography
 
 @Composable
-fun ArchitectureTypeSection(modifier: Modifier = Modifier, architecture: ModuleArchitecture) {
+fun ArchitectureTypeSection(
+    modifier: Modifier = Modifier,
+    architecture: ModuleArchitecture,
+    includeSemantics: Boolean,
+    onIncludeSemanticsChanged: (checked: Boolean) -> Unit
+) {
     Column(modifier = modifier, verticalArrangement = Arrangement.spacedBy(8.dp)) {
         Text(text = "Architecture type", style = Typography.h4TextStyle())
         Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
-            RadioButtonChip(selected = architecture is ModuleArchitecture.Clean, onClick = {}) {
+            RadioButtonChip(selected = architecture == ModuleArchitecture.Clean, onClick = {}) {
                 Text("Clean")
             }
-            RadioButtonChip(selected = architecture is ModuleArchitecture.BFF, onClick = {}) {
+            RadioButtonChip(selected = architecture == ModuleArchitecture.BFF, onClick = {}) {
                 Text("BFF UI")
             }
         }
@@ -33,7 +38,7 @@ fun ArchitectureTypeSection(modifier: Modifier = Modifier, architecture: ModuleA
             "This choice is explained in the docs. It depends if you need to process BFF API responses.",
             modifier = Modifier.padding(bottom = 8.dp)
         )
-        CheckboxRow(checked = architecture.includeSemantics, onCheckedChange = {}) {
+        CheckboxRow(checked = includeSemantics, onCheckedChange = onIncludeSemanticsChanged) {
             Text(
                 text = buildAnnotatedString {
                     append("Include ")

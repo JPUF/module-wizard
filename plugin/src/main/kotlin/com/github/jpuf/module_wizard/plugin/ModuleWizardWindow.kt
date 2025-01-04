@@ -18,7 +18,12 @@ class ModuleWizardWindow(private val currentProject: Project) :
     override fun createCenterPanel(): JComponent {
         setSize(600, 800)
         val service = currentProject.service<ModuleWizardService>()
-        return ModuleWizardUi.createPanel(width = 600, height = 800, state = service.state)
+        return ModuleWizardUi.createPanel(
+            width = 600,
+            height = 800,
+            state = service.state,
+            onIncludeSemanticsChanged = service::onIncludeSemanticsChanged
+        )
     }
 
     /* Disable default OK and Cancel action button in Dialog window. */

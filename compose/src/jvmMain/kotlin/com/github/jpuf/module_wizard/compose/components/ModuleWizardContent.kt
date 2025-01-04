@@ -20,7 +20,12 @@ private const val SUBTITLE_2 =
     "A detailed explanation of the architectural decisions is provided in our dev documentation."
 
 @Composable
-fun ModuleWizardContent(modifier: Modifier = Modifier, listState: LazyListState, contentState: ModuleWizardState) {
+fun ModuleWizardContent(
+    modifier: Modifier = Modifier,
+    listState: LazyListState,
+    contentState: ModuleWizardState,
+    onIncludeSemanticsChanged: (checked: Boolean) -> Unit
+) {
     LazyColumn(
         modifier = modifier,
         state = listState,
@@ -37,7 +42,11 @@ fun ModuleWizardContent(modifier: Modifier = Modifier, listState: LazyListState,
             ModuleNameSection()
         }
         item {
-            ArchitectureTypeSection(architecture = contentState.moduleArchitecture)
+            ArchitectureTypeSection(
+                architecture = contentState.moduleArchitecture,
+                includeSemantics = contentState.includeSemantics,
+                onIncludeSemanticsChanged = onIncludeSemanticsChanged
+            )
         }
         item {
             ArchitecturePreviewSection()

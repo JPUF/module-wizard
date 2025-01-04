@@ -8,6 +8,7 @@ import com.intellij.util.concurrency.AppExecutorUtil
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
 
 @Service(Service.Level.PROJECT)
 internal class ModuleWizardService : CoroutineScope, Disposable {
@@ -18,6 +19,12 @@ internal class ModuleWizardService : CoroutineScope, Disposable {
     private val _state = MutableStateFlow(initialState)
     val state = _state.asStateFlow()
 
+    fun onIncludeSemanticsChanged(checked: Boolean) {
+        _state.update { s ->
+            s.copy(includeSemantics = checked)
+        }
+    }
+
     override fun dispose() {
         cancel("Disposing ${this::class.simpleName}...")
         coroutineContext.cancel(CancellationException("Shutting down project..."))
@@ -26,7 +33,8 @@ internal class ModuleWizardService : CoroutineScope, Disposable {
     private companion object {
         val initialState = ModuleWizardState(
             name = "",
-            moduleArchitecture = ModuleArchitecture.Clean(includeSemantics = true)
+            moduleArchitecture = ModuleArchitecture.Clean,
+            includeSemantics = true
         )
     }
 }
