@@ -11,6 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.github.jpuf.module_wizard.model.ModuleArchitecture
 import com.github.jpuf.module_wizard.model.ModuleWizardState
+import com.github.jpuf.module_wizard.model.modularizationPreview
 import org.jetbrains.jewel.ui.component.InformationBanner
 import org.jetbrains.jewel.ui.component.Text
 import org.jetbrains.jewel.ui.component.Typography
@@ -53,7 +54,7 @@ fun ModuleWizardContent(
             )
         }
         item {
-            ArchitecturePreviewSection()
+            ArchitecturePreviewSection(modularizationPreview = contentState.modularizationPreview())
         }
         item {
             Spacer(Modifier.height(64.dp))
