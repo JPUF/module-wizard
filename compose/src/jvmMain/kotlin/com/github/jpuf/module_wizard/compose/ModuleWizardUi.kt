@@ -72,7 +72,7 @@ object ModuleWizardUi {
                     contentAlignment = Alignment.CenterEnd,
                     modifier = Modifier.fillMaxWidth().align(Alignment.End)
                 ) {
-                    DefaultButton(onClick = {}) {
+                    DefaultButton(onClick = {}, modifier = Modifier.padding(8.dp)) {
                         Text("Generate")
                     }
                 }
